@@ -4,10 +4,10 @@
 
 using namespace std;
 
-// Хеш-таблица с открытой адресацией и квадратичным пробингом
+// РҐРµС€-С‚Р°Р±Р»РёС†Р° СЃ РѕС‚РєСЂС‹С‚РѕР№ Р°РґСЂРµСЃР°С†РёРµР№ Рё РєРІР°РґСЂР°С‚РёС‡РЅС‹Рј РїСЂРѕР±РёРЅРіРѕРј
 class HashTable {
 private:
-    enum EntryState { ACTIVE, EMPTY, DELETED }; // Состояния ячейки
+    enum EntryState { ACTIVE, EMPTY, DELETED }; // РЎРѕСЃС‚РѕСЏРЅРёСЏ СЏС‡РµР№РєРё
 
     struct HashEntry {
         int key;
@@ -18,21 +18,21 @@ private:
     vector<HashEntry> table;
     int size;
 
-    // Хеш-функция
+    // РҐРµС€-С„СѓРЅРєС†РёСЏ
     int hashFunction(int key) {
         return key % size;
     }
 
-    // Квадратичный пробинг
+    // РљРІР°РґСЂР°С‚РёС‡РЅС‹Р№ РїСЂРѕР±РёРЅРі
     int quadraticProbing(int index, int i) {
         return (index + i * i) % size;
     }
 
 public:
-    // Конструктор
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     HashTable(int tableSize) : size(tableSize), table(tableSize, { 0, 0, EMPTY }) {}
 
-    // Вставка элемента
+    // Р’СЃС‚Р°РІРєР° СЌР»РµРјРµРЅС‚Р°
     void insert(int key, int value) {
         int index = hashFunction(key);
         int i = 0;
@@ -49,7 +49,7 @@ public:
         }
     }
 
-    // Поиск элемента
+    // РџРѕРёСЃРє СЌР»РµРјРµРЅС‚Р°
     int search(int key) {
         int index = hashFunction(key);
         int i = 0;
@@ -61,10 +61,10 @@ public:
             index = quadraticProbing(index, ++i);
         }
 
-        return -1; // Элемент не найден
+        return -1; // Р­Р»РµРјРµРЅС‚ РЅРµ РЅР°Р№РґРµРЅ
     }
 
-    // Ленивое удаление элемента
+    // Р›РµРЅРёРІРѕРµ СѓРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
     void lazyDelete(int key) {
         int index = hashFunction(key);
         int i = 0;
@@ -80,7 +80,7 @@ public:
         cout << "Error: not found\n";
     }
 
-    // Вывод хеш-таблицы
+    // Р’С‹РІРѕРґ С…РµС€-С‚Р°Р±Р»РёС†С‹
     void print() {
         cout << "HashTable:\n";
         for (int i = 0; i < size; ++i) {
@@ -99,7 +99,7 @@ public:
 };
 
 int main() {
-    HashTable ht(10); // Хеш-таблица размера 10 ячеек
+    HashTable ht(10); // РҐРµС€-С‚Р°Р±Р»РёС†Р° СЂР°Р·РјРµСЂРѕРј РІ 10 СЏС‡РµРµРє
 
     ht.insert(12, 24);
     ht.insert(25, 50);
